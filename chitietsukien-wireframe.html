@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Trang sự kiện chi tiết | SIA Events 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --coral: #D85A30;
+    --coral-dark: #B84820;
+    --coral-light: #FAECE7;
+    --coral-mid: #F0997B;
+    --ink: #1A1714;
+    --ink-70: #4A4440;
+    --ink-40: #8C857F;
+    --ink-15: #E8E5E2;
+    --ink-06: #F5F3F1;
+    --white: #FDFCFB;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --ff-display: 'DM Serif Display', Georgia, serif;
+    --ff-body: 'DM Sans', system-ui, sans-serif;
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 16px;
+    --r-xl: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: #F0EDE8;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE CHROME ── */
+  .page-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .page-header .logo {
+    font-family: var(--ff-display);
+    font-size: 20px;
+    letter-spacing: -.02em;
+  }
+  .page-header .logo span { color: var(--coral-mid); }
+  .header-nav { display: flex; gap: 24px; font-size: 13px; opacity: .65; }
+  .header-nav a { color: inherit; text-decoration: none; }
+  .header-nav a:hover { opacity: 1; }
+
+  /* ── LAYOUT WRAPPER ── */
+  .layout-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 48px 32px;
+  }
+
+  /* ── CASE TOGGLE ── */
+  .case-toggle {
+    display: flex;
+    gap: 0;
+    background: var(--white);
+    border-radius: var(--r-xl);
+    padding: 4px;
+    width: fit-content;
+    margin: 0 auto 40px;
+    border: 1px solid var(--ink-15);
+  }
+  .case-btn {
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--ff-body);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--ink-40);
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .case-btn.active {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  /* ── PAGE CONTAINER ── */
+  .event-page {
+    background: var(--white);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    border: 1px solid var(--ink-15);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    padding: 48px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--coral);
+    opacity: .08;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 120px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--coral-mid);
+    opacity: .06;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .status-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .status-badge.soon { background: rgba(255,255,255,.1); color: #FAC775; }
+  .status-badge.open { background: rgba(29,158,117,.15); color: #5DCAA5; }
+  .status-badge.live { background: rgba(216,90,48,.2); color: var(--coral-mid); }
+
+  .meta-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.6);
+    border: 1px solid rgba(255,255,255,.1);
+  }
+
+  .hero-title {
+    font-family: var(--ff-display);
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 24px;
+    line-height: 1.5;
+    max-width: 520px;
+  }
+
+  /* Stats row (case B) */
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 28px;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .05em; }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--ff-body);
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all .18s;
+  }
+  .cta-primary-hero {
+    background: var(--coral);
+    color: var(--white);
+  }
+  .cta-primary-hero:hover { background: var(--coral-dark); transform: translateY(-1px); }
+  .cta-primary-hero svg { width: 16px; height: 16px; }
+
+  /* ── NOTICE BANNER ── */
+  .notice-banner {
+    display: flex;
+    gap: 12px;
+    padding: 14px 20px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .notice-banner.draft {
+    background: var(--amber-light);
+    color: var(--amber);
+    border-bottom: 1px solid #F4C775;
+  }
+  .notice-banner .notice-icon {
+    width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content-section {
+    padding: 32px 48px;
+    border-bottom: 1px solid var(--ink-15);
+  }
+  .content-section:last-child { border-bottom: none; }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink-40);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .section-body {
+    font-size: 14px;
+    color: var(--ink-70);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+
+  /* Key points */
+  .key-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .key-point {
+    background: var(--ink-06);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    border: 1px solid var(--ink-15);
+  }
+  .key-point-label { font-size: 11px; color: var(--ink-40); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .key-point-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  /* Tag pills */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .tag-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: var(--blue-light);
+    color: var(--blue);
+    border: 1px solid rgba(24,95,165,.15);
+  }
+
+  /* Speakers */
+  .speakers-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .speaker-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--ink-06);
+    border-radius: var(--r-md);
+    border: 1px solid var(--ink-15);
+    flex: 1;
+    min-width: 200px;
+  }
+  .speaker-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--ink-15);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display);
+    font-size: 15px;
+    color: var(--ink-40);
+  }
+  .speaker-name { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+  .speaker-role { font-size: 11px; color: var(--ink-40); margin-top: 2px; }
+
+  /* Timeline */
+  .timeline { margin-top: 4px; }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 24px;
+    width: 1px;
+    height: calc(100% - 24px);
+    background: var(--ink-15);
+  }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--coral);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .tl-time { font-size: 11px; color: var(--coral); font-weight: 500; margin-bottom: 2px; letter-spacing: .03em; }
+  .tl-title { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .tl-desc { font-size: 12px; color: var(--ink-40); margin-top: 3px; }
+
+  /* Organizer */
+  .organizer-row {
+    display: flex; gap: 14px; align-items: center;
+    padding: 16px;
+    background: var(--ink-06);
+    border-radius: var(--r-md);
+    border: 1px solid var(--ink-15);
+  }
+  .org-logo {
+    width: 40px; height: 40px;
+    border-radius: var(--r-sm);
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display);
+    font-size: 13px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .org-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .org-desc { font-size: 12px; color: var(--ink-40); margin-top: 2px; }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    padding: 36px 48px;
+    background: var(--ink-06);
+    border-top: 1px solid var(--ink-15);
+  }
+  .form-section-header {
+    margin-bottom: 24px;
+  }
+  .form-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--coral); font-weight: 500; margin-bottom: 8px; }
+  .form-title { font-family: var(--ff-display); font-size: 22px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .form-desc { font-size: 13px; color: var(--ink-40); }
+
+  /* Form tabs (case A) */
+  .form-tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--ink-15); }
+  .form-tab {
+    padding: 9px 18px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink-40);
+    border-bottom: 2px solid transparent;
+    transition: all .15s;
+    font-family: var(--ff-body);
+    background: none;
+    border-top: none; border-left: none; border-right: none;
+    margin-bottom: -1px;
+  }
+  .form-tab:hover { color: var(--ink); }
+  .form-tab.active { color: var(--coral); border-bottom-color: var(--coral); font-weight: 500; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-field-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-field-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 12px; font-weight: 500; color: var(--ink-70); }
+  .form-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--ink-15);
+    font-size: 14px;
+    font-family: var(--ff-body);
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color .15s;
+    outline: none;
+    appearance: none;
+  }
+  .form-input:focus { border-color: var(--coral); }
+  .form-input.placeholder-mode { color: var(--ink-40); }
+  select.form-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%238C857F' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+  textarea.form-input { resize: vertical; min-height: 80px; }
+
+  .form-privacy { font-size: 11px; color: var(--ink-40); margin-top: 10px; }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 32px;
+    background: var(--coral);
+    color: var(--white);
+    border: none;
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--ff-body);
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all .18s;
+  }
+  .btn-submit:hover { background: var(--coral-dark); transform: translateY(-1px); }
+  .btn-submit svg { width: 16px; height: 16px; }
+
+  /* ── CASE VISIBILITY ── */
+  .case-a, .case-b { display: none; }
+  .case-a.visible, .case-b.visible { display: contents; }
+
+  /* ── ANNOTATION LAYER ── */
+  .annotation-wrap {
+    max-width: 780px;
+    margin: 24px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .annotation {
+    display: flex;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: var(--r-md);
+    font-size: 12px;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .annotation.note { background: var(--blue-light); color: var(--blue); }
+  .annotation.warn { background: var(--amber-light); color: var(--amber); }
+  .annotation-num {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: currentColor;
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .annotation-num-inner { color: var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .layout-wrapper { padding: 24px 16px; }
+    .hero { padding: 32px 24px 28px; }
+    .content-section { padding: 24px 24px; }
+    .form-section { padding: 28px 24px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="page-header">
+  <div class="logo">SIA <span>Events</span></div>
+  <nav class="header-nav">
+    <a href="#">Sự kiện 2026</a>
+    <a href="#">Về SIA</a>
+    <a href="#">Liên hệ</a>
+  </nav>
+</header>
+
+<div class="layout-wrapper">
+
+  <!-- Case toggle -->
+  <div class="case-toggle">
+    <button class="case-btn active" onclick="switchCase('a')">Trường hợp A — Thông tin sơ bộ</button>
+    <button class="case-btn" onclick="switchCase('b')">Trường hợp B — Thông tin đầy đủ</button>
+  </div>
+
+  <!-- ════════════════════════════════
+       PAGE MOCKUP
+  ════════════════════════════════ -->
+  <div class="event-page">
+
+    <!-- ── HERO ── -->
+    <!-- CASE A hero -->
+    <div class="hero case-a visible">
+      <div class="hero-meta">
+        <span class="status-badge soon">Sắp diễn ra</span>
+        <span class="meta-chip">12 · 05 · 2026</span>
+        <span class="meta-chip">Innovation Hub · Hà Nội</span>
+      </div>
+      <h1 class="hero-title">KOC Hub<br>Workshop #12</h1>
+      <p class="hero-subtitle">Workshop training KOC — chủ đề "Storytelling for commerce" với 5 speakers trong ngành. Chi tiết chương trình sẽ được cập nhật trong thời gian sớm nhất.</p>
+      <a href="#form-section" class="hero-cta cta-primary-hero">
+        Trở thành đối tác / speaker
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <!-- CASE B hero -->
+    <div class="hero case-b">
+      <div class="hero-meta">
+        <span class="status-badge open">Đang mở đăng ký</span>
+        <span class="meta-chip">05 · 05 · 2026</span>
+        <span class="meta-chip">Studio SIA · Q10, TP.HCM</span>
+      </div>
+      <h1 class="hero-title">Mega Livestream<br>5.5</h1>
+      <p class="hero-subtitle">Livestream nhãn hàng + creator trên TikTok Shop — flagship campaign Q2/2026. Kết nối 30+ brand và 80+ creator trong 1 ngày.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Khách tham dự</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Brands</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">80+</div>
+          <div class="stat-label">Creators</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Miễn phí</div>
+          <div class="stat-label">Phí tham dự</div>
+        </div>
+      </div>
+      <a href="#form-section" class="hero-cta cta-primary-hero">
+        Đăng ký tham dự
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <!-- ── NOTICE (case A only) ── -->
+    <div class="notice-banner draft case-a visible">
+      <svg class="notice-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="9" r="7.5"/><line x1="9" y1="6" x2="9" y2="9.5"/><circle cx="9" cy="12" r=".5" fill="currentColor"/>
+      </svg>
+      <span>Sự kiện đang trong giai đoạn lên kế hoạch. Thông tin chi tiết về lịch trình và diễn giả sẽ được cập nhật sớm.</span>
+    </div>
+
+    <!-- ── SECTION 1: Về sự kiện ── -->
+    <div class="content-section">
+      <div class="section-eyebrow">Về sự kiện</div>
+
+      <!-- Case A: Brief -->
+      <div class="case-a visible">
+        <p class="section-body">Workshop chuyên sâu dành cho KOC, content creator và brand marketer muốn nắm vững kỹ năng "Storytelling for commerce" — từ kịch bản đến conversion. Sự kiện hứa hẹn quy tụ các speaker thực chiến từ hệ sinh thái TikTok Shop, Shopee và brand side.</p>
+        <div class="key-points">
+          <div class="key-point"><div class="key-point-label">Hình thức</div><div class="key-point-value">Workshop trực tiếp</div></div>
+          <div class="key-point"><div class="key-point-label">Đối tượng</div><div class="key-point-value">KOC, Brand, Agency</div></div>
+          <div class="key-point"><div class="key-point-label">Quy mô dự kiến</div><div class="key-point-value">~150 người</div></div>
+        </div>
+      </div>
+
+      <!-- Case B: Full -->
+      <div class="case-b">
+        <p class="section-body">Mega Livestream 5.5 là sự kiện thương mại điện tử lớn nhất Q2/2026 do SIA tổ chức, kết nối trực tiếp nhãn hàng và creator trong cùng một không gian vật lý. Cả ngày gồm panel thảo luận buổi sáng và session kết nối 1-1 buổi chiều.</p>
+        <div class="tag-row">
+          <span class="tag-pill">TikTok Shop</span>
+          <span class="tag-pill">Livestream commerce</span>
+          <span class="tag-pill">Brand × Creator matching</span>
+          <span class="tag-pill">Campaign planning</span>
+        </div>
+        <div class="key-points" style="margin-top:16px">
+          <div class="key-point"><div class="key-point-label">Thời gian</div><div class="key-point-value">9:00 – 18:00</div></div>
+          <div class="key-point"><div class="key-point-label">Phí tham dự</div><div class="key-point-value">Miễn phí</div></div>
+          <div class="key-point"><div class="key-point-label">Hình thức</div><div class="key-point-value">Trực tiếp + livestream</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: Diễn giả (case B only) ── -->
+    <div class="content-section case-b">
+      <div class="section-eyebrow">Diễn giả</div>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <div class="speaker-avatar">TN</div>
+          <div>
+            <div class="speaker-name">Trần Ngọc Anh</div>
+            <div class="speaker-role">Head of Commerce · Brand X</div>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar">ML</div>
+          <div>
+            <div class="speaker-name">Minh Lê</div>
+            <div class="speaker-role">TikTok Shop · Partnership Lead</div>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar">HT</div>
+          <div>
+            <div class="speaker-name">Hà Trương</div>
+            <div class="speaker-role">Founder · Creator Studio HCM</div>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-avatar">PD</div>
+          <div>
+            <div class="speaker-name">Phúc Đặng</div>
+            <div class="speaker-role">CMO · Skincare Brand</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 3: Lịch trình (case B only) ── -->
+    <div class="content-section case-b">
+      <div class="section-eyebrow">Lịch trình</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-time">09:00 – 09:30</div>
+            <div class="tl-title">Đón tiếp & networking</div>
+            <div class="tl-desc">Check-in, coffee, kết nối tự do</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-time">09:30 – 11:30</div>
+            <div class="tl-title">Panel: Livestream commerce 2026 — xu hướng & chiến lược</div>
+            <div class="tl-desc">4 speakers, moderated Q&A</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-time">13:00 – 17:00</div>
+            <div class="tl-title">Brand × Creator matching session</div>
+            <div class="tl-desc">Gặp gỡ 1-1, pitch, ký kết hợp tác</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-time">17:00 – 18:00</div>
+            <div class="tl-title">Closing & drinks</div>
+            <div class="tl-desc">Tổng kết, kết nối tự do</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 4: Đơn vị tổ chức ── -->
+    <div class="content-section">
+      <div class="section-eyebrow">Tổ chức bởi</div>
+      <div class="organizer-row">
+        <div class="org-logo">SIA</div>
+        <div>
+          <div class="org-name">SIA — Saigon Innovation Academy</div>
+          <div class="org-desc">Đơn vị tổ chức sự kiện marketing & thương mại điện tử hàng đầu tại Việt Nam</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORM SECTION ── -->
+    <div class="form-section" id="form-section">
+
+      <!-- Case A: Partner/Speaker form -->
+      <div class="case-a visible">
+        <div class="form-section-header">
+          <div class="form-eyebrow">Tham gia cùng chúng tôi</div>
+          <div class="form-title">Trở thành đối tác hoặc speaker</div>
+          <div class="form-desc">Điền thông tin bên dưới — đội ngũ SIA sẽ liên hệ trong vòng 2 ngày làm việc.</div>
+        </div>
+
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="switchTab(this)">Đối tác tài trợ</button>
+          <button class="form-tab" onclick="switchTab(this)">Speaker / Diễn giả</button>
+          <button class="form-tab" onclick="switchTab(this)">Media / Truyền thông</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field-group">
+            <label class="form-label">Họ và tên *</label>
+            <input class="form-input" type="text" placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Chức vụ *</label>
+            <input class="form-input" type="text" placeholder="Marketing Manager">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Công ty / Thương hiệu *</label>
+            <input class="form-input" type="text" placeholder="Tên công ty">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Email công ty *</label>
+            <input class="form-input" type="email" placeholder="name@company.com">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Số điện thoại</label>
+            <input class="form-input" type="tel" placeholder="0901 234 567">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Ngân sách dự kiến</label>
+            <select class="form-input">
+              <option value="">Chọn mức ngân sách</option>
+              <option>Dưới 50 triệu</option>
+              <option>50 – 150 triệu</option>
+              <option>Trên 150 triệu</option>
+            </select>
+          </div>
+          <div class="form-field-group full">
+            <label class="form-label">Mục tiêu & kỳ vọng</label>
+            <textarea class="form-input" placeholder="Chia sẻ ngắn về mục tiêu của bạn khi tham gia sự kiện này..."></textarea>
+          </div>
+        </div>
+        <p class="form-privacy">Thông tin của bạn được bảo mật và chỉ dùng để liên hệ về sự kiện này.</p>
+        <button class="btn-submit">
+          Gửi thông tin
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+
+      <!-- Case B: Attendee form -->
+      <div class="case-b">
+        <div class="form-section-header">
+          <div class="form-eyebrow">Đăng ký tham dự</div>
+          <div class="form-title">Giữ chỗ của bạn</div>
+          <div class="form-desc">Chỗ có giới hạn. Xác nhận sẽ được gửi qua email ngay sau khi đăng ký.</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field-group">
+            <label class="form-label">Họ và tên *</label>
+            <input class="form-input" type="text" placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Email *</label>
+            <input class="form-input" type="email" placeholder="name@email.com">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Số điện thoại *</label>
+            <input class="form-input" type="tel" placeholder="0901 234 567">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Công ty / Thương hiệu</label>
+            <input class="form-input" type="text" placeholder="(Không bắt buộc)">
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Vai trò của bạn *</label>
+            <select class="form-input">
+              <option value="">Chọn vai trò</option>
+              <option>Brand / Marketer</option>
+              <option>Creator / KOC</option>
+              <option>Agency</option>
+              <option>Media / Báo chí</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Bạn biết sự kiện qua</label>
+            <select class="form-input">
+              <option value="">Chọn nguồn</option>
+              <option>Facebook / Instagram</option>
+              <option>TikTok</option>
+              <option>Bạn bè giới thiệu</option>
+              <option>Email SIA</option>
+              <option>Khác</option>
+            </select>
+          </div>
+        </div>
+        <p class="form-privacy">Thông tin của bạn được bảo mật và chỉ dùng để xác nhận tham dự sự kiện.</p>
+        <button class="btn-submit">
+          Xác nhận đăng ký
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <!-- end event-page -->
+
+  <!-- Annotations -->
+  <div class="annotation-wrap">
+    <div class="annotation note case-a visible">
+      <div class="annotation-num"><span class="annotation-num-inner">A</span></div>
+      <div>Trường hợp A (sơ bộ): Hero → Notice banner → Giới thiệu ngắn + thông tin cơ bản → Đơn vị tổ chức → Form đối tác/speaker với 3 tab. CTA duy nhất: "Trở thành đối tác / speaker".</div>
+    </div>
+    <div class="annotation note case-b">
+      <div class="annotation-num"><span class="annotation-num-inner">B</span></div>
+      <div>Trường hợp B (đầy đủ): Hero + stats → Về sự kiện + tags → Diễn giả → Lịch trình → Đơn vị tổ chức → Form tham dự. CTA duy nhất: "Đăng ký tham dự".</div>
+    </div>
+    <div class="annotation warn">
+      <div class="annotation-num"><span class="annotation-num-inner">!</span></div>
+      <div>Bỏ hoàn toàn "Lưu sự kiện" và "Theo dõi cập nhật" — mỗi trang chỉ có 1 CTA chính dẫn thẳng xuống form tương ứng.</div>
+    </div>
+  </div>
+
+</div>
+<!-- end layout-wrapper -->
+
+<script>
+  function switchCase(c) {
+    document.querySelectorAll('.case-a, .case-b').forEach(el => el.classList.remove('visible'));
+    document.querySelectorAll('.case-' + c).forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.case-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', (c === 'a' && i === 0) || (c === 'b' && i === 1));
+    });
+  }
+  function switchTab(el) {
+    el.closest('.form-tabs').querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>

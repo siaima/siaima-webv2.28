@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIA Innovation Marketing — Wireframe Sitemap v3</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Google Sans Flex',system-ui,sans-serif;background:#F8F6F2;padding:20px 24px 60px;color:#1A1A1A}
+
+/* ── META BAR ── */
+.meta-bar{margin-bottom:6px}
+.meta-title{font-size:15px;font-weight:600;color:#1A1A1A}
+.meta-sub{font-size:11px;color:#888;margin-top:3px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 18px;align-items:center}
+.legend-item{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#888}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* ── MENU BAR ── */
+.menu-bar{background:#fff;border:1.5px solid #E5E2DB;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:0;margin-bottom:20px;flex-wrap:wrap;gap:6px}
+.menu-logo{font-size:13px;font-weight:700;color:#1A1A1A;margin-right:12px;letter-spacing:-0.02em}
+.menu-logo span{color:#E8502A}
+.menu-item{font-size:11px;color:#555;padding:5px 10px;border-radius:5px;position:relative;cursor:default}
+.menu-item.has-sub{padding-right:16px}
+.menu-item.has-sub::after{content:"▾";font-size:9px;position:absolute;right:5px;top:6px;color:#999}
+.menu-item.active{background:#E8502A;color:#fff;font-weight:600}
+.menu-spacer{flex:1}
+.menu-lang{font-size:11px;color:#888;padding:5px 8px;border:1px solid #E5E2DB;border-radius:5px}
+.menu-cta{font-size:11px;font-weight:700;background:#E8502A;color:#fff;padding:6px 14px;border-radius:6px}
+
+/* ── LAYOUT ── */
+.wrap{overflow-x:auto;padding-bottom:20px;-webkit-overflow-scrolling:touch}
+.cols{display:flex;gap:14px;min-width:max-content;align-items:flex-start;padding:2px 2px 4px}
+
+/* ── PAGE CARD ── */
+.page{width:210px;flex-shrink:0;border:1.5px solid #E5E2DB;border-radius:10px;background:#fff;position:relative;align-self:flex-start}
+.page-title{text-align:center;font-size:12px;font-weight:600;padding:9px 12px;border-bottom:1.5px solid #E5E2DB;background:#F5F2EE;border-radius:9px 9px 0 0;color:#1A1A1A}
+.page-body{padding:8px}
+
+/* ── BLOCKS ── */
+.block{border:0.5px solid #E0DDD6;border-radius:6px;padding:7px 10px;margin-bottom:5px;background:#fff}
+.block:last-child{margin-bottom:0}
+.block-title{font-size:11.5px;font-weight:600;color:#1A1A1A;margin-bottom:3px}
+.block-item{font-size:10.5px;color:#777;line-height:1.55;padding-left:10px;position:relative}
+.block-item::before{content:"·";position:absolute;left:2px;color:#bbb}
+
+/* Block states */
+.hero-block{background:#FAECE7;border-color:#F0997B}
+.hero-block .block-title{color:#993C1D}
+.cta-block{background:#EBF4F8;border-color:#A8D0E0}
+.cta-block .block-title{color:#1A5F7A}
+.new-block{background:#FAEEDA;border-color:#EF9F27}
+.new-block .block-title{color:#854F0B}
+.removed-block{background:#F5F5F5;border-color:#DDD;opacity:0.45}
+.removed-block .block-title{color:#999;text-decoration:line-through}
+.new-badge{display:inline-block;font-size:8.5px;padding:1px 5px;border-radius:3px;background:#EF9F27;color:#fff;margin-left:4px;vertical-align:middle;font-weight:600}
+.changed-badge{display:inline-block;font-size:8.5px;padding:1px 5px;border-radius:3px;background:#E8502A;color:#fff;margin-left:4px;vertical-align:middle;font-weight:600}
+.merged-badge{display:inline-block;font-size:8.5px;padding:1px 5px;border-radius:3px;background:#2C6E8A;color:#fff;margin-left:4px;vertical-align:middle;font-weight:600}
+
+/* ── SUB PAGE ── */
+.sub-page{width:185px;flex-shrink:0;border:1.5px dashed #D0CCC4;border-radius:10px;align-self:flex-start;margin-top:32px;position:relative;background:#FAFAF8}
+.sub-page .page-title{border-bottom:1.5px dashed #D0CCC4;background:transparent;color:#666}
+
+/* ── COLUMN GROUPS ── */
+.col-group{display:flex;flex-direction:column;gap:0;align-items:center}
+.col-group-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#E8502A;margin-bottom:6px;text-align:center}
+.connector{font-size:13px;color:#ccc;margin:3px auto;text-align:center;display:block}
+.h-connector{display:flex;align-items:center;gap:0;margin:0 -2px}
+</style>
+</head>
+<body>
+
+<!-- META -->
+<div class="meta-bar">
+  <div class="meta-title">SIA Innovation Marketing — Wireframe Sitemap v3</div>
+  <div class="meta-sub">Cập nhật theo feedback PDF · Song ngữ VI + EN · 7 trang chính + 3 trang con</div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#FAECE7;border:0.5px solid #F0997B"></div>Hero / Key section</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#EBF4F8;border:0.5px solid #A8D0E0"></div>CTA / Form</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#FAEEDA;border:0.5px solid #EF9F27"></div>Mới thêm</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#F5F5F5;border:0.5px solid #DDD;opacity:.5"></div>Đã bỏ</div>
+  <div class="legend-item"><span style="font-size:8.5px;background:#E8502A;color:#fff;padding:1px 5px;border-radius:3px;font-weight:600">SỬA</span> Thay đổi so v2</div>
+  <div class="legend-item"><span style="font-size:8.5px;background:#2C6E8A;color:#fff;padding:1px 5px;border-radius:3px;font-weight:600">GỘP</span> Gộp từ trang khác</div>
+  <div class="legend-item"><div class="legend-dot" style="border:1.5px dashed #D0CCC4;background:#FAFAF8"></div>Trang con</div>
+</div>
+
+<!-- MENU DEMO -->
+<div class="menu-bar">
+  <div class="menu-logo">SÍA<span>.</span></div>
+  <div class="menu-item">Về SIA IMA</div>
+  <div class="menu-item has-sub">Dịch vụ</div>
+  <div class="menu-item">Cộng đồng</div>
+  <div class="menu-item">Showcase</div>
+  <div class="menu-item">Blog</div>
+  <div class="menu-spacer"></div>
+  <div class="menu-lang">VI · EN</div>
+  <div class="menu-cta">Liên hệ ngay →</div>
+</div>
+<div style="font-size:10px;color:#aaa;margin:-12px 0 18px 4px">↳ Dropdown Dịch vụ: SIA IMA · SIA Event · SIA Hub &nbsp;|&nbsp; Liên hệ = nút riêng, không trong nav</div>
+
+<!-- SITEMAP -->
+<div class="wrap">
+<div class="cols">
+
+<!-- ===== VỀ SIA IMA (gộp Trang chủ + Giới thiệu) ===== -->
+<div class="page">
+  <div class="page-title">Về SIA IMA <span class="merged-badge">GỘP</span></div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header</div>
+      <div class="block-item">Logo SIA</div>
+      <div class="block-item">Nav mới (Về SIA IMA · Dịch vụ · Cộng đồng · Showcase · Blog)</div>
+      <div class="block-item">Switch VI / EN · Nút Liên hệ ngay</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero section <span class="changed-badge">SỬA</span></div>
+      <div class="block-item">Ticker số liệu chạy ngang: 150+ chiến dịch · 50B GMV · 1.5K creators · 25M reach</div>
+      <div class="block-item">Tagline: "Strategic Growth Architect"</div>
+      <div class="block-item">Sub-tagline: "Chúng tôi kiến tạo hệ sinh thái marketing cho thương hiệu và creator thời đại mới"</div>
+      <div class="block-item">CTA: Khám phá dịch vụ · Xem dự án</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">3 trụ cột dịch vụ — GIỮ NGUYÊN</div>
+      <div class="block-item">SIA IMA — Marketing & Media</div>
+      <div class="block-item">SIA Event — Brand Experience</div>
+      <div class="block-item">SIA Hub — Influencer & Commerce</div>
+      <div class="block-item">Icon + mô tả + link "Xem chi tiết →"</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">Câu chuyện SIA <span class="changed-badge">SỬA</span></div>
+      <div class="block-item">Layout 2 cột: text trái + stats phải</div>
+      <div class="block-item">Text: "Từ một ý tưởng đến hệ sinh thái marketing tích hợp"</div>
+      <div class="block-item">Stats: 150+ · 50B+ · 1.5K+ · 25M+</div>
+      <div class="block-item">CTA: Khám phá dịch vụ · Xem dự án</div>
+    </div>
+
+    <div class="block removed-block">
+      <div class="block-title">Why SIA — 4 stat blocks</div>
+      <div class="block-item">Đã bỏ layout kiểu "100K+ community members"</div>
+    </div>
+
+    <div class="block removed-block">
+      <div class="block-title">Partner badges</div>
+      <div class="block-item">Đã bỏ: TikTok Shop · Shopee · Meta · Google</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">Kim chỉ nam SIA <span class="merged-badge">GỘP</span></div>
+      <div class="block-item">Sứ mệnh · Tầm nhìn · Giá trị cốt lõi</div>
+      <div class="block-item">Layout 3 cột card</div>
+      <div class="block-item">Ownership · Creativity · Data · Community</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">Timeline 5 năm SIA <span class="merged-badge">GỘP</span></div>
+      <div class="block-item">2020 → 2021 → 2022 → 2023 → 2024 → 2025</div>
+      <div class="block-item">Dạng timeline dọc hoặc ngang</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Dự án nổi bật — GIỮ NGUYÊN</div>
+      <div class="block-item">3–6 card: Ảnh + Brand + Tag + Kết quả</div>
+      <div class="block-item">CTA: Xem tất cả dự án →</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Logo khách hàng — GIỮ NGUYÊN</div>
+      <div class="block-item">Marquee slider — 80+ thương hiệu</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Timeline sự kiện rút gọn — GIỮ NGUYÊN</div>
+      <div class="block-item">8–10 sự kiện · Tag IMA/Event/Hub</div>
+      <div class="block-item">CTA: Xem tất cả → trang Cộng đồng</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Blog / Insight mới — GIỮ NGUYÊN</div>
+      <div class="block-item">3 card bài viết mới nhất</div>
+    </div>
+
+    <div class="block removed-block">
+      <div class="block-title">Đội ngũ</div>
+      <div class="block-item">Đã bỏ</div>
+    </div>
+
+    <div class="block removed-block">
+      <div class="block-title">CTA Dark — Sẵn sàng?</div>
+      <div class="block-item">Đã bỏ</div>
+    </div>
+
+    <div class="block cta-block">
+      <div class="block-title">Form liên hệ <span class="changed-badge">GIỮ LẠI</span></div>
+      <div class="block-item">Họ và tên · Email · SĐT</div>
+      <div class="block-item">Công ty · Quy mô</div>
+      <div class="block-item">Dịch vụ quan tâm (dropdown)</div>
+      <div class="block-item">Mô tả nhu cầu · Ngân sách dự kiến</div>
+      <div class="block-item">Gửi email + lưu CRM</div>
+      <div class="block-item">CTA: Gửi yêu cầu tư vấn →</div>
+    </div>
+
+    <div class="block removed-block">
+      <div class="block-title">Quy trình 4 bước</div>
+      <div class="block-item">Đã bỏ khỏi trang này</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Footer</div>
+      <div class="block-item">Social · Thông tin SIA · Dịch vụ · Liên hệ</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DỊCH VỤ (trang chính) ===== -->
+<div class="page">
+  <div class="page-title">Dịch vụ — Trang chính</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header</div>
+      <div class="block-item">Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero — giới thiệu chung</div>
+      <div class="block-item">Badge: "Về SIA Innovation Marketing Agency"</div>
+      <div class="block-item">"Chúng tôi kiến tạo hệ sinh thái marketing cho thương hiệu và creator thời đại mới"</div>
+      <div class="block-item">Stats: 5+ năm · 3 trụ cột · 80+ thương hiệu · 1.5K+ creators</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">3 trụ cột — overview cards</div>
+      <div class="block-item">SIA IMA · SIA Event · SIA Hub</div>
+      <div class="block-item">Mỗi card: icon + mô tả + danh sách dịch vụ + "Xem chi tiết →"</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">Bốn nguyên tắc <span class="merged-badge">GỘP</span></div>
+      <div class="block-item">01 Ownership · 02 Creativity</div>
+      <div class="block-item">03 Data-driven · 04 Community</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Footer</div>
+      <div class="block-item">Social · Thông tin SIA · Dịch vụ · Liên hệ</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DV: SIA IMA ===== -->
+<div class="page">
+  <div class="page-title">Dịch vụ · SIA IMA</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero SIA IMA</div>
+      <div class="block-item">Innovation Marketing — Solutions & Media Production</div>
+      <div class="block-item">Tư vấn chiến lược, chuyển đổi số, mô hình tăng trưởng</div>
+      <div class="block-item">CTA: Tư vấn ngay</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Dịch vụ chi tiết — GIỮ NGUYÊN</div>
+      <div class="block-item">Brand strategy & positioning</div>
+      <div class="block-item">Integrated campaign</div>
+      <div class="block-item">Creative Mega Livestream</div>
+      <div class="block-item">Content & media production</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Case study IMA — GIỮ NGUYÊN</div>
+      <div class="block-item">3–4 case nổi bật · Link showcase</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Testimonial · CTA cuối · Footer</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DV: SIA EVENT ===== -->
+<div class="page">
+  <div class="page-title">Dịch vụ · SIA Event</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero SIA Event</div>
+      <div class="block-item">Event & Brand Experience</div>
+      <div class="block-item">Sự kiện doanh nghiệp, hội thảo, workshop, O2O activation</div>
+      <div class="block-item">CTA: Lên kế hoạch sự kiện</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Dịch vụ chi tiết — GIỮ NGUYÊN</div>
+      <div class="block-item">Corporate events</div>
+      <div class="block-item">Seminars & workshops</div>
+      <div class="block-item">Brand Experience O2O</div>
+      <div class="block-item">Roadshow & activation</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Case study Event · CTA · Footer</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DV: SIA HUB ===== -->
+<div class="page">
+  <div class="page-title">Dịch vụ · SIA Hub</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero SIA Hub</div>
+      <div class="block-item">Influencer Marketing · Social Commerce · Creator Ecosystem</div>
+      <div class="block-item">KOL / KOC / UGC / Affiliate · 1.5K+ creators</div>
+      <div class="block-item">CTA: Kết nối ngay</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">5 ngành hàng thế mạnh <span class="new-badge">NEW</span></div>
+      <div class="block-item">Mom & Baby</div>
+      <div class="block-item">F&B</div>
+      <div class="block-item">Beauty & Lifestyle</div>
+      <div class="block-item">Health & Wellness</div>
+      <div class="block-item">Tech & AI</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Dịch vụ chi tiết — GIỮ NGUYÊN</div>
+      <div class="block-item">KOL / KOC / UGC campaigns</div>
+      <div class="block-item">Affiliate marketing</div>
+      <div class="block-item">KOC Hub community</div>
+      <div class="block-item">Livestream commerce</div>
+      <div class="block-item">Social commerce & e-commerce solutions</div>
+      <div class="block-item">Data dashboard: ROAS · CPA · GMV</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Case study Hub · CTA · Footer</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== CỘNG ĐỒNG ===== -->
+<div class="col-group">
+<div class="page">
+  <div class="page-title">Cộng đồng <span class="new-badge">NEW</span></div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Hero Cộng đồng</div>
+      <div class="block-item">"Hệ sinh thái cộng đồng — nơi brands, creators & founders kết nối"</div>
+      <div class="block-item">THREE CORE COMMUNITIES · 100,000+ Members</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">3 cộng đồng chính — 3 cột</div>
+      <div class="block-item">Creators Network — 10K+ KOC · UGC · Affiliates</div>
+      <div class="block-item">Founder & Business Community — 10K+ Entrepreneurs</div>
+      <div class="block-item">Student Community — 100K+ Members</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Chỉ số cộng đồng</div>
+      <div class="block-item">100K+ members · 40%+ Founders & Builders</div>
+      <div class="block-item">30+ Universities · 40+ Fortune 500</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Thành viên tham gia từ</div>
+      <div class="block-item">Big Tech · AI Companies · VC Firms</div>
+      <div class="block-item">Universities · Enterprise</div>
+      <div class="block-item">Logo wall theo nhóm</div>
+    </div>
+
+    <div class="block new-block">
+      <div class="block-title">Timeline sự kiện <span class="new-badge">NEW</span></div>
+      <div class="block-item">Sự kiện sắp tới là chính — ngang scroll</div>
+      <div class="block-item">Có timeline lịch sử cộng đồng phía dưới</div>
+      <div class="block-item">Trạng thái: đã qua / đang / sắp tới</div>
+    </div>
+
+    <div class="block cta-block">
+      <div class="block-title">CTA Tham gia cộng đồng</div>
+      <div class="block-item">Đăng ký · Trở thành Speaker →</div>
+      <div class="block-item">(Speaker → dẫn trang con)</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Footer</div>
+    </div>
+
+  </div>
+</div>
+<span class="connector">↓</span>
+<!-- SUB: SPEAKER FORM -->
+<div class="sub-page">
+  <div class="page-title">↳ Trở thành Speaker</div>
+  <div class="page-body">
+    <div class="block">
+      <div class="block-title">Hero + giới thiệu</div>
+      <div class="block-item">Speaker program của SIA</div>
+      <div class="block-item">Ảnh/video past speakers</div>
+    </div>
+    <div class="block cta-block">
+      <div class="block-title">Form đăng ký</div>
+      <div class="block-item">Họ tên · Email · SĐT</div>
+      <div class="block-item">Lĩnh vực chuyên môn</div>
+      <div class="block-item">Chủ đề muốn chia sẻ</div>
+      <div class="block-item">Link LinkedIn / Portfolio</div>
+      <div class="block-item">CTA: Gửi đăng ký →</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SHOWCASE ===== -->
+<div class="col-group">
+<div class="page">
+  <div class="page-title">Showcase</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block coral-bg" style="background:#FAECE7;border-color:#F0997B">
+      <div class="block-title" style="color:#993C1D">Dự án nổi bật nhất</div>
+      <div class="block-item">Banner dự án mới nhất</div>
+      <div class="block-item">Nút tới dự án</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Filter</div>
+      <div class="block-item">Tất cả · IMA · Event · Hub</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Grid case study</div>
+      <div class="block-item">3 cột · Ảnh + Brand + Tag + Kết quả</div>
+      <div class="block-item">Load more / Phân trang</div>
+    </div>
+
+    <div class="block cta-block">
+      <div class="block-title">Form liên hệ</div>
+      <div class="block-item">Contact form ngắn</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Footer</div>
+    </div>
+
+  </div>
+</div>
+<span class="connector">↓</span>
+<div class="sub-page">
+  <div class="page-title">↳ Showcase chi tiết</div>
+  <div class="page-body">
+    <div class="block"><div class="block-title">Nav + Breadcrumb</div></div>
+    <div class="block"><div class="block-title">Hero dự án</div><div class="block-item">Banner · Tên · Brand · Tag DV</div></div>
+    <div class="block"><div class="block-title">Tổng quan</div><div class="block-item">Bối cảnh · Thách thức · Giải pháp</div></div>
+    <div class="block"><div class="block-title">Kết quả</div><div class="block-item">Reach · GMV · Infographic</div></div>
+    <div class="block"><div class="block-title">Gallery · Dự án liên quan · CTA</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== BLOG ===== -->
+<div class="col-group">
+<div class="page">
+  <div class="page-title">Blog / Insight</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Bài viết featured</div>
+      <div class="block-item">Banner bài mới nhất</div>
+      <div class="block-item">Nút tới bài viết</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Filter category</div>
+      <div class="block-item">Marketing · Media · Event · Ecom · Podcast</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Danh sách bài viết</div>
+      <div class="block-item">3 card / hàng · Ảnh + Tiêu đề + Tag</div>
+      <div class="block-item">Phân trang</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Topic nổi bật · Footer</div>
+    </div>
+
+  </div>
+</div>
+<span class="connector">↓</span>
+<div class="sub-page">
+  <div class="page-title">↳ Bài viết chi tiết</div>
+  <div class="page-body">
+    <div class="block"><div class="block-title">Nav + Breadcrumb</div></div>
+    <div class="block"><div class="block-title">Tiêu đề + Meta</div><div class="block-item">Tác giả · Ngày · Tag · Ảnh</div></div>
+    <div class="block"><div class="block-title">Nội dung</div><div class="block-item">Rich text · Ảnh/Video · TOC sidebar</div></div>
+    <div class="block"><div class="block-title">Share & Subscribe · Bài liên quan</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== LIÊN HỆ ===== -->
+<div class="page">
+  <div class="page-title">Liên hệ</div>
+  <div class="page-body">
+
+    <div class="block">
+      <div class="block-title">Header + Nav</div>
+    </div>
+
+    <div class="block hero-block">
+      <div class="block-title">Thông tin liên hệ</div>
+      <div class="block-item">14 Ngõ Bệ, Tân Bình</div>
+      <div class="block-item">0988 441 630</div>
+      <div class="block-item">sia.agency@siagroupco.com</div>
+      <div class="block-item">Social links · Google Map</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">FAQ accordion</div>
+      <div class="block-item">Câu hỏi thường gặp · Mở/đóng</div>
+    </div>
+
+    <div class="block cta-block">
+      <div class="block-title">Contact form đầy đủ</div>
+      <div class="block-item">Họ tên · Email · SĐT · Công ty · Quy mô</div>
+      <div class="block-item">Dịch vụ quan tâm (dropdown)</div>
+      <div class="block-item">Mô tả nhu cầu · Ngân sách</div>
+      <div class="block-item">Gửi email + lưu CRM</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Đặt lịch tư vấn</div>
+      <div class="block-item">Calendly embed · Book a Call</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Footer</div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end .cols -->
+</div><!-- end .wrap -->
+
+<div style="font-size:10px;color:#bbb;margin-top:16px">SIA Innovation Marketing · Sitemap v3 · Cập nhật theo PDF feedback · April 2026</div>
+
+</body>
+</html>

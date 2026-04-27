@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(md5 SIA-innovation-logo.png SIA-innovation-logo-white.png SIA-innovation-logo-black.png assets/images/logo/sia-logo.png assets/images/logo/sia-logo-white.png assets/images/logo/sia-logo-black.png)",
+      "Bash(python3)",
+      "Bash(awk '{print $9, $5}')",
+      "Bash(awk '{printf \"%-40s %6s\\\\n\", $9, $5}')",
+      "Bash(curl -s \"http://localhost:8765/assets/css/variables.css?v=8\")",
+      "Bash(curl -s \"http://localhost:8765/assets/js/main.js\")",
+      "Bash(ls -la .git)",
+      "Bash(ls *.html)",
+      "Bash(perl -pi -e 's/event-detail-[ab]\\\\.html/event-detail.html/g' community.html index.html)"
+    ]
+  }
+}

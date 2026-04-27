@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIA Marketing — Design System v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wdth,wght@0,75..125,100..700;1,75..125,100..700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #E8502A;
+    --primary-light: #F07A5C;
+    --primary-dark: #C43A1A;
+    --secondary: #2C6E8A;
+    --secondary-light: #4A90A8;
+    --secondary-dark: #1A4F65;
+    --black: #0D0D0D;
+    --gray-700: #3D3D3D;
+    --gray-500: #6E6E6E;
+    --gray-300: #B8B8B8;
+    --gray-100: #F0F0F0;
+    --gray-50: #F8F8F8;
+    --white: #FFFFFF;
+    --warm-gray: #E8E0D4;
+    --surface-1: #F5F2EE;
+    --surface-2: #EAE4DC;
+    --disabled: #D6D6D6;
+    --orange-ramp-100: #FFF0EB;
+    --orange-ramp-200: #FFD4C2;
+    --orange-ramp-300: #FFB89A;
+    --orange-ramp-400: #FF9C72;
+    --orange-ramp-500: #E8502A;
+    --orange-ramp-600: #C43A1A;
+    --orange-ramp-700: #9E2D10;
+    --orange-ramp-800: #7A2008;
+    --blue-ramp-100: #EBF4F8;
+    --blue-ramp-200: #C2DDE8;
+    --blue-ramp-300: #9AC6D8;
+    --blue-ramp-400: #72AEC8;
+    --blue-ramp-500: #2C6E8A;
+    --blue-ramp-600: #1A4F65;
+    --blue-ramp-700: #0E3548;
+    --blue-ramp-800: #071E2C;
+    --semantic-success: #2A8A4A;
+    --semantic-warning: #D4A017;
+    --semantic-error: #C43A1A;
+    --semantic-info: #2C6E8A;
+    --font-display: 'Google Sans Flex', sans-serif;
+    --font-body: 'Google Sans Flex', sans-serif;
+    --radius: 6px;
+    --radius-lg: 12px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--black);
+    background: #FAFAF8;
+    line-height: 1.5;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    border-bottom: 1px solid var(--gray-100);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--black);
+  }
+  .page-header h1 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .page-header .meta {
+    font-size: 11px;
+    color: var(--gray-500);
+    margin-top: 4px;
+  }
+  .page-header .meta span { margin-right: 12px; }
+
+  /* ── COLOR PALETTE ── */
+  .palette-row { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+    flex: 1;
+  }
+  .swatch-color {
+    height: 52px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+  .swatch-label {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 5px;
+    color: var(--gray-700);
+  }
+  .swatch-hex {
+    font-size: 10px;
+    color: var(--gray-500);
+    font-family: monospace;
+  }
+  .swatch-desc {
+    font-size: 9px;
+    color: var(--gray-500);
+    margin-top: 1px;
+  }
+
+  /* Ramp swatches */
+  .ramp-row { display: flex; gap: 3px; margin-bottom: 8px; }
+  .ramp-swatch { flex: 1; height: 36px; border-radius: 3px; }
+  .ramp-labels { display: flex; gap: 3px; margin-bottom: 4px; }
+  .ramp-labels span { flex: 1; font-size: 9px; color: var(--gray-500); text-align: center; }
+
+  /* ── SEMANTIC ROW ── */
+  .semantic-row { display: flex; gap: 6px; }
+  .semantic-chip {
+    flex: 1;
+    height: 36px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-table { width: 100%; border-collapse: collapse; }
+  .type-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray-500);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .type-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+  .type-table tr:last-child td { border-bottom: none; }
+  .type-sample { color: var(--black); font-weight: 400; }
+
+  /* Type preview */
+  .type-preview { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 32px; margin-top: 16px; }
+  .type-preview .headline { font-family: var(--font-display); font-size: 48px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+  .type-preview .headline em { color: var(--primary); font-style: italic; }
+  .type-preview .subhead { font-size: 18px; font-weight: 500; color: var(--gray-700); margin-top: 8px; }
+  .type-preview .body-txt { font-size: 14px; color: var(--gray-500); margin-top: 12px; line-height: 1.65; max-width: 600px; }
+  .type-preview .caption { font-size: 11px; color: var(--gray-500); margin-top: 10px; }
+  .type-preview .label-sm { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-top: 10px; }
+  .type-preview .media-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--black); color: var(--white); padding: 3px 8px; border-radius: 2px;
+    display: inline-block; margin-top: 12px;
+  }
+
+  /* Responsive type table */
+  .resp-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .resp-table th {
+    text-align: center; padding: 6px; font-size: 10px; font-weight: 700;
+    color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em;
+    background: var(--gray-50); border-bottom: 1px solid var(--gray-100);
+  }
+  .resp-table th:first-child { text-align: left; }
+  .resp-table td {
+    text-align: center; padding: 7px; font-size: 11px; color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .resp-table td:first-child { text-align: left; font-weight: 600; }
+
+  /* ── BUTTONS ── */
+  .btn-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+  .btn-col { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .btn-col-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-500); margin-bottom: 4px;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 6px; border: none; cursor: pointer; font-family: var(--font-body);
+    font-weight: 600; border-radius: var(--radius); transition: all 0.15s;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn:hover { filter: brightness(0.92); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); filter: brightness(0.88); }
+
+  /* Sizes */
+  .btn-xl { font-size: 15px; padding: 14px 24px; }
+  .btn-lg { font-size: 14px; padding: 11px 20px; }
+  .btn-md { font-size: 13px; padding: 9px 16px; }
+  .btn-sm { font-size: 12px; padding: 7px 13px; }
+  .btn-xs { font-size: 11px; padding: 5px 10px; }
+
+  /* Variants */
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-secondary { background: var(--secondary); color: white; }
+  .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+  .btn-outline-dark { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
+  .btn-ghost { background: transparent; color: var(--gray-700); border: 1.5px solid var(--gray-300); }
+  .btn-dark { background: var(--black); color: white; }
+  .btn-cta {
+    background: var(--primary); color: white; font-size: 13px; padding: 10px 20px;
+    border-radius: 100px; font-weight: 700;
+  }
+  .btn-outline-nho { background: transparent; color: var(--secondary); border: 1.5px solid var(--secondary); font-size: 12px; padding: 7px 14px; border-radius: 100px; }
+
+  /* Dark mode buttons column */
+  .btn-col-dark {
+    background: #1A1A1A; padding: 16px; border-radius: var(--radius-lg);
+  }
+  .btn-col-dark .btn-col-label { color: #888; }
+  .btn-col-dark .btn-ghost { color: #ccc; border-color: #555; }
+  .btn-col-dark .btn-outline { color: #FF7A5C; border-color: #FF7A5C; }
+
+  /* ── NAVIGATION ── */
+  .nav-demo {
+    background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg);
+    padding: 0 20px; display: flex; align-items: center; gap: 0; height: 48px;
+  }
+  .nav-demo .logo { font-family: var(--font-display); font-weight: 800; font-size: 14px; margin-right: 20px; }
+  .nav-demo .logo span { color: var(--primary); }
+  .nav-demo .nav-items { display: flex; gap: 2px; flex: 1; }
+  .nav-item {
+    font-size: 12px; font-weight: 500; color: var(--gray-700); padding: 6px 12px;
+    border-radius: 5px; cursor: pointer; transition: background 0.1s;
+  }
+  .nav-item:hover { background: var(--gray-50); }
+  .nav-item.active { background: var(--primary); color: white; font-weight: 600; }
+  .nav-item.highlighted { color: var(--primary); font-weight: 600; }
+  .nav-cta { margin-left: auto; background: var(--primary); color: white; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: var(--radius); border: none; cursor: pointer; }
+
+  /* ── COMPONENTS ── */
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .comp-card {
+    background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg);
+    padding: 16px;
+  }
+  .comp-card .tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 100px; background: var(--orange-ramp-100); color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .comp-card .card-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+  .comp-card .card-meta { font-size: 11px; color: var(--gray-500); margin-top: 3px; }
+  .comp-card .progress-row { margin-top: 12px; }
+  .comp-card .progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-500); margin-bottom: 5px; }
+  .progress-bar { height: 5px; background: var(--gray-100); border-radius: 99px; }
+  .progress-fill { height: 100%; border-radius: 99px; background: var(--primary); }
+  .comp-card .card-link { font-size: 12px; font-weight: 600; color: var(--primary); margin-top: 12px; display: block; }
+
+  /* Tags */
+  .tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .tag-chip {
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px;
+    background: var(--gray-100); color: var(--gray-700); border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .tag-chip.active { background: var(--primary); color: white; }
+  .tag-chip.outline-tag { background: transparent; border-color: var(--gray-300); }
+
+  /* ── DECORATIVE ── */
+  .deco-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .deco-card {
+    flex: 1; min-width: 120px; min-height: 90px; border-radius: var(--radius-lg);
+    position: relative; overflow: hidden;
+  }
+  .deco-card-glass {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .deco-gradient-1 { background: linear-gradient(135deg, var(--primary) 0%, #FF9A6C 100%); }
+  .deco-gradient-2 { background: linear-gradient(135deg, var(--secondary) 0%, #7CC4D8 100%); }
+  .deco-gradient-3 { background: linear-gradient(135deg, #1A1A1A 0%, #3D3D3D 100%); }
+  .deco-noise {
+    background: var(--surface-1);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  }
+
+  /* ── SPACING SYSTEM ── */
+  .spacing-grid { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+  .spacing-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .spacing-bar { background: var(--primary); border-radius: 3px; width: 24px; opacity: 0.85; }
+  .spacing-label { font-size: 9px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; }
+  .spacing-val { font-size: 10px; font-family: monospace; color: var(--gray-700); }
+
+  /* ── GRID/RESPONSIVE ── */
+  .grid-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+  .grid-meta-item { }
+  .grid-meta-item .gm-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-500); }
+  .grid-meta-item .gm-val { font-size: 12px; font-weight: 600; color: var(--black); margin-top: 2px; }
+
+  /* ── ICONS ── */
+  .icon-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+  .icon-chip {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    padding: 10px 14px; background: var(--white); border: 1px solid var(--gray-100);
+    border-radius: var(--radius); cursor: pointer; transition: all 0.15s;
+    min-width: 72px;
+  }
+  .icon-chip:hover { border-color: var(--primary); background: var(--orange-ramp-100); }
+  .icon-chip svg { width: 20px; height: 20px; color: var(--gray-700); }
+  .icon-chip:hover svg { color: var(--primary); }
+  .icon-chip .icon-label { font-size: 9px; color: var(--gray-500); text-align: center; }
+
+  /* ── DO & DON'T ── */
+  .do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .do-box, .dont-box {
+    background: var(--white); border-radius: var(--radius-lg); padding: 16px;
+    border: 1px solid var(--gray-100);
+  }
+  .do-box { border-top: 3px solid var(--semantic-success); }
+  .dont-box { border-top: 3px solid var(--semantic-error); }
+  .do-box .box-header { color: var(--semantic-success); font-weight: 700; font-size: 12px; margin-bottom: 10px; }
+  .dont-box .box-header { color: var(--semantic-error); font-weight: 700; font-size: 12px; margin-bottom: 10px; }
+  .do-box ul, .dont-box ul { padding-left: 16px; }
+  .do-box li, .dont-box li { font-size: 12px; color: var(--gray-700); margin-bottom: 5px; line-height: 1.5; }
+
+  /* ── MISC ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .row { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+  hr.divider { border: none; border-top: 1px solid var(--gray-100); margin: 24px 0; }
+
+  @media (max-width: 700px) {
+    .two-col, .comp-grid, .do-dont-grid { grid-template-columns: 1fr; }
+    .btn-grid { flex-direction: column; }
+    .palette-row { flex-wrap: wrap; }
+    .type-preview .headline { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="page-header">
+    <h1>SIA Marketing — Design System v3</h1>
+    <div class="meta">
+      <span>Type: Primary · Strategic · Orange · Secondary: Blue · Neutral</span>
+      <span>Style: Business/Strict · Border Rounded</span>
+    </div>
+  </header>
+
+  <!-- ═══════════ 01 COLOR PALETTE ═══════════ -->
+  <section class="section">
+    <div class="section-title">01 — Color Palette</div>
+
+    <!-- Primary + Secondary + Neutral -->
+    <div class="section-label">Primary — SIA Orange &nbsp;|&nbsp; Secondary — Ocean Blue &nbsp;|&nbsp; Neutral</div>
+    <div class="palette-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8502A;"></div>
+        <div class="swatch-label">Primary</div>
+        <div class="swatch-hex">#E8502A</div>
+        <div class="swatch-desc">CTA, accent, interactions</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F07A5C;"></div>
+        <div class="swatch-label">Primary Light</div>
+        <div class="swatch-hex">#F07A5C</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C43A1A;"></div>
+        <div class="swatch-label">Primary Dark</div>
+        <div class="swatch-hex">#C43A1A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2C6E8A;"></div>
+        <div class="swatch-label">Secondary</div>
+        <div class="swatch-hex">#2C6E8A</div>
+        <div class="swatch-desc">link, sub-accent, trust play</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0D0D0D;"></div>
+        <div class="swatch-label">Black</div>
+        <div class="swatch-hex">#0D0D0D</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6E6E6E;"></div>
+        <div class="swatch-label">Gray</div>
+        <div class="swatch-hex">#6E6E6E</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#B8B8B8;"></div>
+        <div class="swatch-label">Gray Light</div>
+        <div class="swatch-hex">#B8B8B8</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F0F0F0;"></div>
+        <div class="swatch-label">Gray 100</div>
+        <div class="swatch-hex">#F0F0F0</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8E0D4;border:1px solid #ddd;"></div>
+        <div class="swatch-label">Warm Gray</div>
+        <div class="swatch-hex">#E8E0D4</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;border:1px solid #ddd;"></div>
+        <div class="swatch-label">White</div>
+        <div class="swatch-hex">#FFFFFF</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <!-- Dark surfaces -->
+    <div class="section-label">Dark surfaces</div>
+    <div class="palette-row" style="max-width:480px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F5F2EE;border:1px solid #ddd;"></div>
+        <div class="swatch-label">Base</div>
+        <div class="swatch-hex">#F5F2EE</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F0EDE8;border:1px solid #ddd;"></div>
+        <div class="swatch-label">Surface 1</div>
+        <div class="swatch-hex">#F0EDE8</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EAE4DC;border:1px solid #ddd;"></div>
+        <div class="swatch-label">Surface 2</div>
+        <div class="swatch-hex">#EAE4DC</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#D6D6D6;border:1px solid #ddd;"></div>
+        <div class="swatch-label">Disabled</div>
+        <div class="swatch-hex">#D6D6D6</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <!-- Orange Ramp -->
+    <div class="section-label">Orange ramp</div>
+    <div class="ramp-labels">
+      <span>100</span><span>200</span><span>300</span><span>400</span><span>500</span><span>600</span><span>700</span><span>800</span>
+    </div>
+    <div class="ramp-row">
+      <div class="ramp-swatch" style="background:#FFF0EB;border:1px solid #eee;"></div>
+      <div class="ramp-swatch" style="background:#FFD4C2;"></div>
+      <div class="ramp-swatch" style="background:#FFB89A;"></div>
+      <div class="ramp-swatch" style="background:#FF9C72;"></div>
+      <div class="ramp-swatch" style="background:#E8502A;"></div>
+      <div class="ramp-swatch" style="background:#C43A1A;"></div>
+      <div class="ramp-swatch" style="background:#9E2D10;"></div>
+      <div class="ramp-swatch" style="background:#7A2008;"></div>
+    </div>
+
+    <!-- Blue Ramp -->
+    <div class="section-label" style="margin-top:12px;">Blue ramp</div>
+    <div class="ramp-labels">
+      <span>100</span><span>200</span><span>300</span><span>400</span><span>500</span><span>600</span><span>700</span><span>800</span>
+    </div>
+    <div class="ramp-row">
+      <div class="ramp-swatch" style="background:#EBF4F8;border:1px solid #eee;"></div>
+      <div class="ramp-swatch" style="background:#C2DDE8;"></div>
+      <div class="ramp-swatch" style="background:#9AC6D8;"></div>
+      <div class="ramp-swatch" style="background:#72AEC8;"></div>
+      <div class="ramp-swatch" style="background:#2C6E8A;"></div>
+      <div class="ramp-swatch" style="background:#1A4F65;"></div>
+      <div class="ramp-swatch" style="background:#0E3548;"></div>
+      <div class="ramp-swatch" style="background:#071E2C;"></div>
+    </div>
+
+    <hr class="divider">
+    <!-- Semantic -->
+    <div class="section-label">Semantic (sử dụng trong trạng thái)</div>
+    <div class="semantic-row" style="max-width:480px;">
+      <div class="semantic-chip" style="background:var(--semantic-success);">✓ Success</div>
+      <div class="semantic-chip" style="background:var(--semantic-warning); color:#fff;">⚠ Warning</div>
+      <div class="semantic-chip" style="background:var(--semantic-error);">✕ Error</div>
+      <div class="semantic-chip" style="background:var(--semantic-info);">ℹ Info</div>
+    </div>
+
+    <hr class="divider">
+    <!-- Filter accents -->
+    <div class="section-label">Filter accent</div>
+    <div class="palette-row" style="max-width:400px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8502A;"></div>
+        <div class="swatch-label">SIA Vàng</div>
+        <div class="swatch-hex">#E8502A</div>
+        <div class="swatch-desc">Blue Vàng</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2C6E8A;"></div>
+        <div class="swatch-label">SIA Xanh</div>
+        <div class="swatch-hex">#2C6E8A</div>
+        <div class="swatch-desc">Blue link, secondary, brand, trust plan</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4A90A8;"></div>
+        <div class="swatch-label">Tint Blue</div>
+        <div class="swatch-hex">#4A90A8</div>
+        <div class="swatch-desc">Blue link</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 TYPOGRAPHY ═══════════ -->
+  <section class="section">
+    <div class="section-title">02 — Typography</div>
+    <p style="font-size:12px;color:var(--gray-500);margin-bottom:16px;">
+      Font chính: <strong>Google Sans Flex</strong> (variable). Hỗ trợ: 4rem → 4em. Geometry: Futuristic, Urban.
+    </p>
+
+    <!-- Type scale table -->
+    <table class="type-table">
+      <thead>
+        <tr>
+          <th>Role</th><th>Size</th><th>Weight</th><th>LH</th><th>Spacing</th><th>Use case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Display</td><td>72px</td><td>800</td><td>1.0</td><td>−0.04em</td><td class="type-sample" style="font-family:var(--font-display);font-size:24px;font-weight:800;">Trang heading chủ</td></tr>
+        <tr><td>H1</td><td>56px</td><td>700</td><td>1.05</td><td>−0.03em</td><td class="type-sample" style="font-family:var(--font-display);font-size:20px;font-weight:700;">Page Title, section hero</td></tr>
+        <tr><td>H2</td><td>40px</td><td>700</td><td>1.1</td><td>−0.02em</td><td class="type-sample" style="font-family:var(--font-display);font-size:17px;font-weight:700;">Section heading</td></tr>
+        <tr><td>H3</td><td>32px</td><td>600</td><td>1.2</td><td>−0.01em</td><td class="type-sample" style="font-size:15px;font-weight:600;">Sub-section, card title text</td></tr>
+        <tr><td>H4</td><td>24px</td><td>600</td><td>1.25</td><td>0</td><td class="type-sample" style="font-size:14px;font-weight:600;">Card heading, table title text</td></tr>
+        <tr><td>Body L</td><td>18px</td><td>400</td><td>1.6</td><td>0</td><td class="type-sample" style="font-size:13px;">Lead paragraph, intro text</td></tr>
+        <tr><td>Body M</td><td>16px</td><td>400</td><td>1.6</td><td>0</td><td class="type-sample" style="font-size:12px;">Primary body text (default)</td></tr>
+        <tr><td>Body S</td><td>14px</td><td>400</td><td>1.65</td><td>0</td><td class="type-sample" style="font-size:11px;">Secondary body, help text</td></tr>
+        <tr><td>Caption</td><td>12px</td><td>400</td><td>1.4</td><td>0</td><td class="type-sample" style="font-size:10px;">Caption, meta, timestamp</td></tr>
+        <tr><td>Small</td><td>10px</td><td>400</td><td>1.4</td><td>0</td><td class="type-sample" style="font-size:9px;">Small, tag, legal note</td></tr>
+        <tr><td>Button L</td><td>15px</td><td>700</td><td>1.0</td><td>normal</td><td class="type-sample" style="font-size:12px;font-weight:700;">Large CTA button</td></tr>
+        <tr><td>Button</td><td>13px</td><td>700</td><td>1.0</td><td>normal</td><td class="type-sample" style="font-size:11px;font-weight:700;">Help text/buttons, CTAs</td></tr>
+        <tr><td>Label</td><td>11px</td><td>700</td><td>1.0</td><td>+0.08em</td><td class="type-sample" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">Navigation items menu</td></tr>
+        <tr><td>Nav</td><td>11px</td><td>400</td><td>1.0</td><td>normal</td><td class="type-sample" style="font-size:10px;">Nav items, "See more"</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Type preview -->
+    <div class="type-preview">
+      <div class="label-sm">MEDIA · SOCIAL COMMERCE · EXPERIENCE</div>
+      <div class="headline">Strategic <em>Growth</em><br>Architect</div>
+      <div class="subhead">Giải pháp marketing đổi mới</div>
+      <div class="caption">Display — Google Sans Flex 800 · Size 48px · LH 1.05 · LS −0.03em</div>
+      <hr style="border:none;border-top:1px solid var(--gray-100);margin:16px 0;">
+      <div style="font-size:18px;font-weight:500;color:var(--gray-700);">Hệ sinh thái dịch vụ tích hợp</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:8px;line-height:1.65;max-width:560px;">
+        Chúng tôi tập trung tăng trưởng bền vững cho thương hiệu trên lĩnh vực Media, Event, Creator.<br>
+        <span style="font-size:11px;color:var(--gray-400);">Body — Plus Jakarta Sans 400 · Size 14px</span>
+      </div>
+      <div class="media-tag">KOC Hub → Creator Ecosystem</div>
+      <div style="font-size:11px;color:var(--gray-500);margin-top:6px;">Influencer marketing đa nền tảng</div>
+    </div>
+
+    <hr class="divider">
+    <!-- Responsive type -->
+    <div class="section-label">Responsive type — dãy px</div>
+    <table class="resp-table">
+      <thead>
+        <tr><th>Role</th><th>Mobile</th><th>Tablet</th><th>Desktop</th><th>Wide</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Display</td><td>40px</td><td>56px</td><td>72px</td><td>80px</td></tr>
+        <tr><td>H1</td><td>30px</td><td>40px</td><td>56px</td><td>60px</td></tr>
+        <tr><td>H2</td><td>22px</td><td>30px</td><td>40px</td><td>44px</td></tr>
+        <tr><td>H3</td><td>18px</td><td>22px</td><td>28px</td><td>28px</td></tr>
+        <tr><td>Body</td><td>14px</td><td>14px</td><td>16px</td><td>16px</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════ 03 BUTTONS ═══════════ -->
+  <section class="section">
+    <div class="section-title">03 — Buttons</div>
+    <p style="font-size:11px;color:var(--gray-500);margin-bottom:16px;">
+      Guy key: Gradient cam = Primary CTA stop điểm. Plain = Secondary. Outline = Tertiary. Ghost = thứ yếu, PR nhẹ khác (5%px default). Pill = CTA highlight, đặc biệt. Tint Blue = Default, dùng Primary mò Cụm.
+    </p>
+
+    <div class="btn-grid">
+      <!-- Light -->
+      <div>
+        <div class="btn-col-label">Light mode</div>
+        <div class="btn-col">
+          <button class="btn btn-primary btn-lg">Tư vấn</button>
+          <button class="btn btn-primary btn-md">Xem dịch vụ</button>
+          <button class="btn btn-outline btn-md">Tìm hiểu thêm</button>
+          <button class="btn btn-ghost btn-md">Ghost button</button>
+          <button class="btn btn-cta">CTA ●</button>
+          <button class="btn btn-dark btn-sm">Blue</button>
+        </div>
+      </div>
+      <!-- Dark -->
+      <div class="btn-col-dark">
+        <div class="btn-col-label">Dark mode</div>
+        <div class="btn-col">
+          <button class="btn btn-primary btn-lg">Tư vấn</button>
+          <button class="btn btn-primary btn-md">Xem dịch vụ</button>
+          <button class="btn btn-outline btn-md" style="color:#FF7A5C;border-color:#FF7A5C;">Tìm hiểu thêm</button>
+          <button class="btn btn-ghost btn-md" style="color:#ccc;border-color:#555;">Ghost button</button>
+          <button class="btn btn-cta">CTA ●</button>
+          <button class="btn btn-outline-nho" style="color:#7CC4D8;border-color:#7CC4D8;">Outline nho</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 04 NAVIGATION ═══════════ -->
+  <section class="section">
+    <div class="section-title">04 — Navigation</div>
+    <nav class="nav-demo">
+      <div class="logo">SIA<span>.</span></div>
+      <div class="nav-items">
+        <div class="nav-item active">Blog</div>
+        <div class="nav-item">Our Story</div>
+        <div class="nav-item highlighted">Showcase</div>
+        <div class="nav-item">Insight</div>
+      </div>
+      <button class="nav-cta">CTA gradient I</button>
+    </nav>
+    <p style="font-size:11px;color:var(--gray-500);margin-top:8px;">Display — Google Sans Flex · Weight: Medium · Active: CTA gradient I · Nav item: Height: 48px</p>
+  </section>
+
+  <!-- ═══════════ 05 COMPONENTS ═══════════ -->
+  <section class="section">
+    <div class="section-title">05 — Components</div>
+    <div class="comp-grid">
+      <!-- Card 1 -->
+      <div class="comp-card">
+        <div class="tag">● Campaign</div>
+        <div class="card-title">Brand X Campaign</div>
+        <div class="card-meta">1.154 reach &nbsp;·&nbsp; 100% ROI%</div>
+        <div class="progress-row">
+          <div class="progress-label"><span>Tiến độ</span><span>78%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:78%;"></div></div>
+        </div>
+        <a class="card-link" href="#">More info ↗</a>
+      </div>
+      <!-- Card 2 -->
+      <div class="comp-card">
+        <div class="tag" style="background:var(--blue-ramp-100);color:var(--secondary);">◆ Forum</div>
+        <div class="card-title">Innovation Forum</div>
+        <div class="card-meta">100+ attendees</div>
+        <div class="progress-row">
+          <div class="progress-label"><span>Hoàn thành</span><span>55%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:55%;background:var(--secondary);"></div></div>
+        </div>
+        <a class="card-link" href="#" style="color:var(--secondary);">More info Cat ↗</a>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div style="margin-top:16px;">
+      <div class="section-label">Tags</div>
+      <div class="tags-row">
+        <span class="tag-chip active">All</span>
+        <span class="tag-chip">Marketing</span>
+        <span class="tag-chip">Branding</span>
+        <span class="tag-chip">KOC</span>
+        <span class="tag-chip outline-tag">Social Media</span>
+        <span class="tag-chip outline-tag">Campaign</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 06 DECORATIVE ELEMENTS ═══════════ -->
+  <section class="section">
+    <div class="section-title">07 — Decorative Elements</div>
+    <p style="font-size:11px;color:var(--gray-500);margin-bottom:12px;">Dải màu nền: màu chính, tông nóng, dải thứ, lớp. Opacity & 20%.</p>
+    <div class="deco-grid">
+      <div class="deco-card deco-gradient-1" style="min-height:100px;"></div>
+      <div class="deco-card deco-gradient-2" style="min-height:100px;"></div>
+      <div class="deco-card deco-gradient-3" style="min-height:100px;"></div>
+      <div class="deco-card deco-noise" style="min-height:100px;border:1px solid var(--gray-100);"></div>
+      <div class="deco-card" style="background:rgba(232,80,42,0.12);border:1px dashed var(--primary);min-height:100px;"></div>
+      <div class="deco-card" style="background:linear-gradient(135deg,#F5F2EE,#E8E0D4);border:1px solid var(--gray-100);min-height:100px;"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 08 SPACING SYSTEM ═══════════ -->
+  <section class="section">
+    <div class="section-title">08 — Spacing System</div>
+    <p style="font-size:11px;color:var(--gray-500);margin-bottom:16px;">Base 4px module. Dùng multiplier, không dùng số lẻ.</p>
+    <div class="spacing-grid">
+      <div class="spacing-item"><div class="spacing-bar" style="height:4px;"></div><div class="spacing-label">2xs</div><div class="spacing-val">4px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:8px;"></div><div class="spacing-label">xs</div><div class="spacing-val">8px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:12px;"></div><div class="spacing-label">sm</div><div class="spacing-val">12px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:16px;"></div><div class="spacing-label">md</div><div class="spacing-val">16px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:24px;"></div><div class="spacing-label">lg</div><div class="spacing-val">24px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:32px;"></div><div class="spacing-label">xl</div><div class="spacing-val">32px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:48px;"></div><div class="spacing-label">2xl</div><div class="spacing-val">48px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:64px;"></div><div class="spacing-label">3xl</div><div class="spacing-val">64px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:96px;"></div><div class="spacing-label">4xl</div><div class="spacing-val">96px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:128px;"></div><div class="spacing-label">5xl</div><div class="spacing-val">128px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:160px;"></div><div class="spacing-label">Section pad</div><div class="spacing-val">160px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height:200px;"></div><div class="spacing-label">Hero height</div><div class="spacing-val">200px</div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 09 GRID & RESPONSIVE ═══════════ -->
+  <section class="section">
+    <div class="section-title">09 — Grid & Responsive</div>
+    <table class="resp-table">
+      <thead>
+        <tr><th>Property</th><th>Mobile</th><th>Tablet</th><th>Desktop</th><th>Wide</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Breakpoint</td><td>768-1023</td><td>1024-1440</td><td>1440</td><td>1728</td></tr>
+        <tr><td>Columns</td><td>4</td><td>8–9</td><td>12</td><td>12</td></tr>
+        <tr><td>Gutter</td><td>16px</td><td>24px</td><td>32px</td><td>32px</td></tr>
+        <tr><td>Margin</td><td>16px</td><td>32px</td><td>64px</td><td>120px</td></tr>
+        <tr><td>Max width</td><td>100%</td><td>100%</td><td>1320px</td><td>1440px</td></tr>
+        <tr><td>Section pad</td><td>48px</td><td>64px</td><td>96px</td><td>120px</td></tr>
+        <tr><td>Card padding</td><td>16px</td><td>20px</td><td>24px</td><td>24px</td></tr>
+        <tr><td>Nav height</td><td>48px</td><td>48px</td><td>60px</td><td>60px</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10px;color:var(--gray-400);margin-top:6px;">Breakpoint: đặt từ 0–767 | Tablet: 768–1023 | Desktop: 1024–1439 | Wide: 1440+</p>
+  </section>
+
+  <!-- ═══════════ 10 ICONS ═══════════ -->
+  <section class="section">
+    <div class="section-title">10 — Icons (Material Rounded)</div>
+    <div class="icon-grid">
+      <!-- Using Unicode/emoji as placeholder icons -->
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3H19a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><rect x="9" y="1" width="6" height="4" rx="1"/></svg>
+        <span class="icon-label">rocket_launch<br>campaign</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        <span class="icon-label">live_tv</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span class="icon-label">celebration</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <span class="icon-label">groups</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="icon-label">hub</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <span class="icon-label">trending_up</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="icon-label">insights</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="icon-label">shopping_cart<br>videocam</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <span class="icon-label">handshake</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="icon-label">person</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <span class="icon-label">auto_awesome<br>psychology</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        <span class="icon-label">language</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <span class="icon-label">arrow_forward<br>phone</span>
+      </div>
+      <div class="icon-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="icon-label">email</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 11 DO & DON'T ═══════════ -->
+  <section class="section">
+    <div class="section-title">11 — Summary: Do &amp; Don't</div>
+    <div class="do-dont-grid">
+      <div class="do-box">
+        <div class="box-header">✓ Do</div>
+        <ul>
+          <li>Dùng font-size theo thang đã quy định</li>
+          <li>Giữ line-height tối thiểu 1.5 cho body text</li>
+          <li>Button radius: 6px rounded (không bo tròn hoàn toàn, trừ CTA pill)</li>
+          <li>Dùng CTA màu cam trong nền sáng, nền trắng</li>
+          <li>Tight heading: dùng Syne weight 800 hoặc 700</li>
+          <li>Dùng <code>var(--primary)</code> cho tất cả interactive</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <div class="box-header">✕ Don't</div>
+        <ul>
+          <li>Không dùng font-size ngoài type scale</li>
+          <li>Không đặt nhiều hơn 2 màu accent cùng cấp</li>
+          <li>Không dùng border-radius quá 12px trên card lớn</li>
+          <li>Không shadow quá đậm trên nền sáng</li>
+          <li>Không mix cam + xanh cùng 1 button group</li>
+          <li>Không dùng <code>system-ui</code>, <code>Arial</code>, hay font ngoài Google Sans Flex</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;font-size:10px;color:var(--gray-400);padding-top:32px;border-top:1px solid var(--gray-100);">
+    SIA Marketing — Design System v3 &nbsp;·&nbsp; Exported to HTML &nbsp;·&nbsp; April 2026
+  </footer>
+
+</div>
+</body>
+</html>

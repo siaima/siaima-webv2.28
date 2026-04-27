@@ -1,0 +1,11 @@
+<div class="mobile-menu" id="mobileMenu">
+  <a class="nav-item active" href="index.html"><span data-lang="vi">Về SIA IMA</span><span data-lang="en" hidden>About SIA</span></a>
+  <a class="nav-item" href="services.html"><span data-lang="vi">Dịch vụ</span><span data-lang="en" hidden>Services</span></a>
+  <a class="nav-item" href="community.html"><span data-lang="vi">Cộng đồng</span><span data-lang="en" hidden>Community</span></a>
+  <a class="nav-item" href="showcase.html"><span data-lang="vi">Showcase</span><span data-lang="en" hidden>Showcase</span></a>
+  <a class="nav-item" href="blog.html"><span data-lang="vi">Blog</span><span data-lang="en" hidden>Blog</span></a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn--primary btn--pill btn--lg">
+      <span data-lang="vi">Liên hệ ngay</span><span data-lang="en" hidden>Contact us</span>
+    </a>
+  </div>
