@@ -12,7 +12,9 @@
       "Bash(ls *.html)",
       "Bash(perl -pi -e 's/event-detail-[ab]\\\\.html/event-detail.html/g' community.html index.html)",
       "Bash(grep -nE \"\\\\.pricing-card\\(--featured|__|\\\\.|\\\\s|\\\\{|,\\)\" assets/css/components.css)",
-      "Bash(perl -pi -e 's/\\\\.css\\\\?v=11/.css?v=12/g' *.html)"
+      "Bash(perl -pi -e 's/\\\\.css\\\\?v=11/.css?v=12/g' *.html)",
+      "Bash(perl -pi -e 's/main\\\\.js\\\\?v=1[12]/main.js?v=13/g; s/theme\\\\.js\\\\?v=1[12]/theme.js?v=13/g; s/swiper-init\\\\.js\\\\?v=1[12]/swiper-init.js?v=13/g' *.html)",
+      "Bash(awk '{print $1}')"
     ]
   }
 }

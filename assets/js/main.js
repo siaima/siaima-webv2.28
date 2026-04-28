@@ -83,16 +83,21 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ===== Counter animation =====
+  // data-target (number) · data-prefix · data-suffix · data-decimals (default 0)
   gsap.utils.toArray('.counter').forEach(el => {
     const target = parseFloat(el.dataset.target || 0);
     const suffix = el.dataset.suffix || '';
     const prefix = el.dataset.prefix || '';
+    const decimals = parseInt(el.dataset.decimals || 0);
     const obj = { val: 0 };
     gsap.to(obj, {
       val: target, duration: 1.8, ease: 'power1.out',
       scrollTrigger: { trigger: el, start: 'top 85%' },
       onUpdate() {
-        el.textContent = prefix + Math.round(obj.val).toLocaleString('en-US') + suffix;
+        const v = decimals > 0
+          ? obj.val.toFixed(decimals)
+          : Math.round(obj.val).toLocaleString('en-US');
+        el.textContent = prefix + v + suffix;
       }
     });
   });
