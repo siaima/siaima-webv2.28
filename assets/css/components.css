@@ -4443,3 +4443,15 @@
               var(--card-border-gradient) border-box;
   border: 1px solid transparent;
 }
+
+/* ===== Restore solid bg for "highlight" / "featured" card variants =====
+   Sitewide gradient rule above overrides their colored bg, leaving white
+   text on white. Re-apply original primary gradient AFTER to win source-order. */
+.pricing-card--featured {
+  background: linear-gradient(165deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: 1px solid var(--primary-dark);
+}
+.deliverable-card--highlight {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: 1px solid var(--primary-dark);
+}

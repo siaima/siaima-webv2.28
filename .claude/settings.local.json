@@ -10,7 +10,9 @@
       "Bash(curl -s \"http://localhost:8765/assets/js/main.js\")",
       "Bash(ls -la .git)",
       "Bash(ls *.html)",
-      "Bash(perl -pi -e 's/event-detail-[ab]\\\\.html/event-detail.html/g' community.html index.html)"
+      "Bash(perl -pi -e 's/event-detail-[ab]\\\\.html/event-detail.html/g' community.html index.html)",
+      "Bash(grep -nE \"\\\\.pricing-card\\(--featured|__|\\\\.|\\\\s|\\\\{|,\\)\" assets/css/components.css)",
+      "Bash(perl -pi -e 's/\\\\.css\\\\?v=11/.css?v=12/g' *.html)"
     ]
   }
 }
